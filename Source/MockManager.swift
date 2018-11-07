@@ -17,7 +17,7 @@ private extension Array {
 #endif
 
 public class MockManager {
-    public static var fail: ((message: String, sourceLocation: SourceLocation)) -> () = { (arg) in let (message, sourceLocation) = arg; XCTFail(message, file: sourceLocation.file, line: sourceLocation.line) }
+    public static var fail: ((message: String, sourceLocation: CuckooSourceLocation)) -> () = { (arg) in let (message, sourceLocation) = arg; XCTFail(message, file: sourceLocation.file, line: sourceLocation.line) }
     private var stubs: [Stub] = []
     private var stubCalls: [StubCall] = []
     private var unverifiedStubCallsIndexes: [Int] = []
@@ -82,7 +82,7 @@ public class MockManager {
         return stub
     }
     
-    public func verify<IN, OUT>(_ method: String, callMatcher: CallMatcher, parameterMatchers: [ParameterMatcher<IN>], sourceLocation: SourceLocation) -> __DoNotUse<OUT> {
+    public func verify<IN, OUT>(_ method: String, callMatcher: CallMatcher, parameterMatchers: [ParameterMatcher<IN>], sourceLocation: CuckooSourceLocation) -> __DoNotUse<OUT> {
         var calls: [StubCall] = []
         var indexesToRemove: [Int] = []
         for (i, stubCall) in stubCalls.enumerated() {
@@ -136,7 +136,7 @@ public class MockManager {
         unverifiedStubCallsIndexes.removeAll()
     }
     
-    func verifyNoMoreInteractions(_ sourceLocation: SourceLocation) {
+    func verifyNoMoreInteractions(_ sourceLocation: CuckooSourceLocation) {
         if unverifiedStubCallsIndexes.isEmpty == false {
             let unverifiedCalls = unverifiedStubCallsIndexes.map { stubCalls[$0] }.map { call in
                     if let bracketIndex = call.method.range(of: "(")?.lowerBound {

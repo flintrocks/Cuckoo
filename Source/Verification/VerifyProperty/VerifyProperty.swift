@@ -10,7 +10,7 @@ public struct VerifyProperty<T> {
     private let manager: MockManager
     private let name: String
     private let callMatcher: CallMatcher
-    private let sourceLocation: SourceLocation
+    private let sourceLocation: CuckooSourceLocation
 
     @discardableResult
     public func get() -> __DoNotUse<T> {
@@ -22,7 +22,7 @@ public struct VerifyProperty<T> {
         return manager.verify(setterName(name), callMatcher: callMatcher, parameterMatchers: [matcher.matcher], sourceLocation: sourceLocation)
     }
     
-    public init(manager: MockManager, name: String, callMatcher: CallMatcher, sourceLocation: SourceLocation) {
+    public init(manager: MockManager, name: String, callMatcher: CallMatcher, sourceLocation: CuckooSourceLocation) {
         self.manager = manager
         self.name = name
         self.callMatcher = callMatcher

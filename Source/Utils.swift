@@ -20,7 +20,7 @@ public func wrap<M: Matchable, IN>(matchable: M, mapping: @escaping (IN) -> M.Ma
     }
 }
 
-public typealias SourceLocation = (file: StaticString, line: UInt)
+public typealias CuckooSourceLocation = (file: StaticString, line: UInt)
 
 public func escapingStub<IN, OUT>(for closure: (IN) -> OUT) -> (IN) -> OUT {
     return { _ in

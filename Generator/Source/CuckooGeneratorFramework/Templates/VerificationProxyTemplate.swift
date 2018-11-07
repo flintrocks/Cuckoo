@@ -12,9 +12,9 @@ extension Templates {
 struct __VerificationProxy_{{ container.name }}: Cuckoo.VerificationProxy {
     private let cuckoo_manager: Cuckoo.MockManager
     private let callMatcher: Cuckoo.CallMatcher
-    private let sourceLocation: Cuckoo.SourceLocation
+    private let sourceLocation: Cuckoo.CuckooSourceLocation
 
-    init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+    init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.CuckooSourceLocation) {
         self.cuckoo_manager = manager
         self.callMatcher = callMatcher
         self.sourceLocation = sourceLocation
