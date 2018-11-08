@@ -29,8 +29,13 @@ internal class ThreadLocal<T> {
                 return
             }
 
+            #if os(macOS)
             let dictionary = Thread.current.threadDictionary
             dictionary[dictionaryKey] = newValue
+            #else
+            var dictionary = Thread.current.threadDictionary as [String: Any]
+            dictionary[dictionaryKey] = newValue
+            #endif
         }
     }
 
@@ -38,7 +43,12 @@ internal class ThreadLocal<T> {
     }
 
     internal func delete() {
+        #if os(macOS)
         let dictionary = Thread.current.threadDictionary
         dictionary.removeObject(forKey: dictionaryKey)
+        #else
+        var dictionary = Thread.current.threadDictionary as [String: Any]
+        dictionary.removeValue(forKey: dictionaryKey)
+        #endif
     }
 }
