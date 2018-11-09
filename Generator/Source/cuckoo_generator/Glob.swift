@@ -158,8 +158,9 @@ class Glob: Collection {
     private func populateFiles(gt: glob_t, includeFiles: Bool) {
         let includeDirectories = behavior.includesDirectoriesInResults
 
-        for i in 0..<Int(gt.gl_matchc) {
-            if let path = String(validatingUTF8: gt.gl_pathv[i]!) {
+        for i in 0..<Int(gt.gl_pathc) {
+            let ptr = gt.gl_pathv![i]! as UnsafeMutablePointer<CChar>
+            if let path = String(validatingUTF8: ptr) {
                 if !includeFiles || !includeDirectories {
                     let isDirectory = self.isDirectory(path: path)
                     if (!includeFiles && !isDirectory) || (!includeDirectories && isDirectory) {

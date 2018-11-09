@@ -12,10 +12,10 @@
       },
       {
         "package": "FileKit",
-        "repositoryURL": "https://github.com/TadeasKriz/FileKit.git",
+        "repositoryURL": "https://github.com/flintrocks/FileKitLinux.git",
         "state": {
           "branch": "develop",
-          "revision": "0acc6e7c336bbd2336c2f9670564dac9ec9c03fe",
+          "revision": "9587452bb04d1cceacc82c31c211dcee8c792d7b",
           "version": null
         }
       },

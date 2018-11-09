@@ -12,9 +12,7 @@ import Result
 
 public struct VersionCommand: CommandProtocol {
 
-    static let appVersion = Bundle.allFrameworks.filter {
-        $0.bundleIdentifier == "org.brightify.CuckooGeneratorFramework"
-        }.first?.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+    static let appVersion = "flint-0.12.0"
 
     public let verb = "version"
     public let function = "Prints the version of this generator."
